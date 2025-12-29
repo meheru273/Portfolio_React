@@ -40,7 +40,7 @@ export default function Hero() {
             variants={textVariant(0.2)}
             className="block bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-transparent text-2xl sm:text-3xl lg:text-4xl font-light tracking-tight pb-6"
           >
-            FULL STACK DEVELOPER
+            SOMEONE
           </motion.span>
 
           <motion.p
