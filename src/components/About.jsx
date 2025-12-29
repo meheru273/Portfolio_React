@@ -40,7 +40,7 @@ export default function About() {
           className="w-full sm:w-5/12 flex-shrink-0 mt-4 sm:mt-0"
         >
           <div className="flex justify-center">
-            <p className="my-2 max-w-xs py-6 text-xs sm:text-sm leading-tight">
+            <p className="text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
               {ABOUT_TEXT}
             </p>
           </div>

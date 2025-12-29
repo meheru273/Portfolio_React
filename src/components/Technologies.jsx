@@ -1,4 +1,4 @@
-// src/components/Technologies.jsx
+// Fixed Technologies.jsx
 import React from "react";
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandNextjs } from "react-icons/tb";
@@ -41,13 +41,17 @@ export default function Technologies() {
   ];
 
   return (
-    <div className="border-b border-neutral-800 pb-24">
+    <div className="border-b border-neutral-800 pb-16 lg:pb-24">
       <motion.h1 
-      whileInView={{opacity:1,y:0}}
-      initial={{opacity:0,y:-100}}
-      transition={{duration:1.5}}
-      className="my-20 text-center text-4xl">Technologies</motion.h1>
-      <div className="flex flex-wrap items-center justify-center gap-6">
+        whileInView={{opacity:1, y:0}}
+        initial={{opacity:0, y:-100}}
+        transition={{duration:1.5}}
+        className="my-16 lg:my-20 text-center text-4xl lg:text-5xl"
+      >
+        Technologies
+      </motion.h1>
+      
+      <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-8 max-w-5xl mx-auto">
         {icons.map(({ Component, color }, index) => (
           <motion.div
             key={index}
@@ -56,11 +60,10 @@ export default function Technologies() {
             animate="animate"
             className="rounded-2xl border-4 border-neutral-800 p-4"
           >
-            <Component className={`text-5xl ${color}`} />
+            <Component className={`text-5xl lg:text-6xl ${color}`} />
           </motion.div>
         ))}
       </div>
     </div>
   );
 }
-
