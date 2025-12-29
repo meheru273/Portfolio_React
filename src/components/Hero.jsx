@@ -21,12 +21,12 @@ const imageVariant = {
 export default function Hero() {
   return (
     <motion.section
-      className="border-b border-neutral-900 pb-16 lg:pb-24"
+      className="border-b border-neutral-900 pb-16 pl-6 lg:pb-24"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-center gap-12 lg:gap-12">
+      <div className="flex flex-wrap lg:flex-nowrap items-center justify-center lg:justify-between gap-8 lg:gap-12">
         {/* TEXT COLUMN */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
           <motion.h1
