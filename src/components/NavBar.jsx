@@ -4,7 +4,7 @@ import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function NavBar() {
   return (
-    <nav className="mb-8 flex items-center justify-between py-12 px-8">
+    <nav className="mb-8 flex items-center justify-between py-12 px-8 lg:px-16">
       {/* Logo or Title */}
       <div className="flex items-center">
         <span className="block bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-transparent text-2xl sm:text-3xl lg:text-4xl font-light tracking-tight">
@@ -13,7 +13,7 @@ export default function NavBar() {
       </div>
 
       {/* Social Icons */}
-      <div className="flex items-center justify-center gap-6 text-3xl sm:text-4xl">
+      <div className="flex items-center justify-center gap-6 text-3xl sm:text-4xl mr-4 lg:mr-16">
         <a 
           href="https://www.linkedin.com/in/meheru-jannat" 
           target="_blank" 
