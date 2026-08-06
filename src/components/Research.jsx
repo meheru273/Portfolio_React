@@ -105,6 +105,7 @@ function Publication({ entry }) {
           <PreviewStack
             images={entry.images}
             thumb={entry.thumb}
+            columns
             className="mt-6 border-t border-line pt-6"
           />
 

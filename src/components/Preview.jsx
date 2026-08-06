@@ -28,12 +28,18 @@ export default function Preview({ image, thumb, className = "" }) {
 }
 
 /**
- * Side column for featured projects and papers: every image at its own
- * natural height, stacked. Letting a tall screenshot stay tall is the point —
- * it fills the column beside a long card instead of leaving a gap under one
- * cropped strip. Falls back to a single schematic when there are no images.
+ * Images at their own natural height — letting a tall screenshot stay tall is
+ * the point, since it fills the column beside a long card instead of leaving a
+ * gap under one cropped strip. Falls back to a single schematic when there are
+ * no images.
+ *
+ * `columns` puts them side by side instead of stacked. Wide paper figures run
+ * to full card height when stacked at full width, so pairing them halves that
+ * while keeping them larger than a narrow side column would allow.
+ * `items-start` is required: a grid would otherwise stretch each image to the
+ * row height and distort it.
  */
-export function PreviewStack({ images, thumb, className = "" }) {
+export function PreviewStack({ images, thumb, columns = false, className = "" }) {
   if (!images?.length) {
     return (
       <div className={className}>
@@ -44,8 +50,17 @@ export function PreviewStack({ images, thumb, className = "" }) {
     );
   }
 
+  const layout = columns
+    ? "grid items-start gap-3 sm:grid-cols-2"
+    : "flex flex-col gap-3";
+
+  // `max-w-full` + `max-h-*` with width and height left auto scales an image
+  // down proportionally to fit both bounds — no `w-full`, which would force
+  // the width and squash the image against the height cap. The cap stops a
+  // very tall screenshot (a portrait phone capture) from setting the card's
+  // height on its own; `mx-auto` then centres whatever ends up narrower.
   return (
-    <div className={`flex flex-col gap-3 ${className}`}>
+    <div className={`${layout} ${className}`}>
       {images.map((image) => (
         <img
           key={image.src}
@@ -53,7 +68,9 @@ export function PreviewStack({ images, thumb, className = "" }) {
           alt={image.alt}
           loading="lazy"
           decoding="async"
-          className="w-full rounded-lg border border-line bg-surface"
+          className={`mx-auto max-w-full rounded-lg border border-line bg-surface ${
+            columns ? "" : "max-h-96"
+          }`}
         />
       ))}
     </div>
