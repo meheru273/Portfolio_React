@@ -15,7 +15,7 @@ import {
 import { PROJECTS } from "../constants";
 import Section from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
-import Preview from "./Preview.jsx";
+import Preview, { PreviewStack } from "./Preview.jsx";
 import TechIcon from "./TechIcon.jsx";
 
 const CATEGORY_ICONS = {
@@ -94,33 +94,16 @@ function CategoryLine({ project }) {
   );
 }
 
-/**
- * A project with several screenshots stacks them down the card's side column;
- * one with none falls back to a single schematic. `self-start` stops the flex
- * row stretching the boxes past their aspect ratio.
- */
-function PreviewStack({ project }) {
-  const shots = project.images?.length ? project.images : [null];
-
-  return (
-    <div className="flex w-full shrink-0 flex-col gap-3 self-start sm:w-40 lg:w-52">
-      {shots.map((image, i) => (
-        <div
-          key={i}
-          className="relative aspect-16/9 w-full overflow-hidden rounded-lg border border-line bg-surface"
-        >
-          <Preview image={image} thumb={project.thumb} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function FeaturedProject({ project }) {
   return (
     <article className={`card cat-${project.cat} p-6 sm:p-7`}>
       <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
-        <PreviewStack project={project} />
+        {/* `self-start` stops the flex row stretching the images. */}
+        <PreviewStack
+          images={project.images}
+          thumb={project.thumb}
+          className="w-full shrink-0 self-start sm:w-44 lg:w-56"
+        />
 
         <div className="min-w-0 flex-1">
           <h3 className="text-lg leading-snug font-semibold text-ink sm:text-xl">

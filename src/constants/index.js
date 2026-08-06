@@ -6,9 +6,12 @@ import shotBanchanIntro from "../assets/banchan_intro.png";
 import shotBanchanLogin from "../assets/banchan_login.png";
 import shotRagApp from "../assets/RAG_APP.png";
 import shotBraille from "../assets/braille.png";
+import shotBrailleLine from "../assets/braille_oneline.png";
 import shotBankApp from "../assets/bank_app.png";
 import figParkinsons from "../assets/paper-parkinsons-1.png";
+import figParkinsonsData from "../assets/parkinsons_dataset.png";
 import figCyclone from "../assets/paper-cyclone-1.png";
+import figCycloneData from "../assets/satellite_data.png";
 
 /* ------------------------------------------------------------------ *
  * Content is sourced from the master resume file. Every claim below   *
@@ -131,7 +134,10 @@ export const PUBLICATIONS = [
       {
         src: figParkinsons,
         alt: "Pipeline figure: IMU preprocessing, self-attention encoder, InfoNCE fine-tuning and Raspberry Pi inference",
-        fit: "contain",
+      },
+      {
+        src: figParkinsonsData,
+        alt: "Left and right wrist accelerometer traces for control, PD and DD subjects, with the class window distribution",
       },
     ],
     highlights: [
@@ -161,7 +167,10 @@ export const PUBLICATIONS = [
       {
         src: figCyclone,
         alt: "Architecture figure: multi-channel VAE, condition encoder and rectified-flow UNet over GRIDSAT-IR and ERA5 data",
-        fit: "contain",
+      },
+      {
+        src: figCycloneData,
+        alt: "Input channels for one storm: ERA5 winds, temperature and pressure alongside GridSat-B1 infrared, water-vapour and visible imagery",
       },
     ],
     highlights: [
@@ -266,6 +275,10 @@ export const PROJECTS = [
       {
         src: shotBraille,
         alt: "Braille detection interface with bounding boxes and decoded text",
+      },
+      {
+        src: shotBrailleLine,
+        alt: "Close-up of one braille line, each cell boxed and decoded to a letter",
       },
     ],
     period: "2026",
@@ -381,10 +394,9 @@ export const PROJECTS = [
     category: "Mobile · Java",
     cat: "mobile",
     thumb: "mobile",
-    images: [
-      { src: shotBankApp, alt: "Bank app sign-in screen", fit: "contain" },
-    ],
+    images: [{ src: shotBankApp, alt: "Bank app sign-in screen" }],
     period: "2024",
+    featured: true,
     description:
       "An Android banking client covering send-money, cash in and out, bill pay, savings and transaction history, with live updates from Firebase Realtime Database.",
     highlights: [

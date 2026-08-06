@@ -9,18 +9,16 @@ import {
 import { PUBLICATIONS, ACHIEVEMENTS, PROFILE } from "../constants";
 import Section from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
-import Preview from "./Preview.jsx";
+import { PreviewStack } from "./Preview.jsx";
 import SocialIcon from "./SocialIcon.jsx";
 
 function Publication({ entry }) {
   return (
     <article className="card cat-research p-6 sm:p-7">
-      <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
-        {/* `self-start` stops the flex row stretching this past its ratio. */}
-        <div className="relative aspect-16/9 w-full shrink-0 self-start overflow-hidden rounded-lg border border-line bg-surface sm:w-44 lg:w-56">
-          <Preview image={entry.images?.[0]} thumb={entry.thumb} />
-        </div>
-
+      {/* Paper figures are wide — 2:1 and 3:1 — so a narrow side column would
+          render them as unreadable strips with dead space underneath. They get
+          the full card width below the text instead. */}
+      <div className="flex flex-col gap-5">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide uppercase cat-tint cat-text">
@@ -103,6 +101,12 @@ function Publication({ entry }) {
               ))}
             </div>
           ) : null}
+
+          <PreviewStack
+            images={entry.images}
+            thumb={entry.thumb}
+            className="mt-6 border-t border-line pt-6"
+          />
 
           <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-5">
             {entry.tags.map((tag) => (
