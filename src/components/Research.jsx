@@ -9,7 +9,7 @@ import {
 import { PUBLICATIONS, ACHIEVEMENTS, PROFILE } from "../constants";
 import Section from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
-import Thumbnail from "./Thumbnail.jsx";
+import Preview from "./Preview.jsx";
 import SocialIcon from "./SocialIcon.jsx";
 
 function Publication({ entry }) {
@@ -17,8 +17,8 @@ function Publication({ entry }) {
     <article className="card cat-research p-6 sm:p-7">
       <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
         {/* `self-start` stops the flex row stretching this past its ratio. */}
-        <div className="relative aspect-16/9 w-full shrink-0 self-start overflow-hidden rounded-lg border border-line bg-surface sm:aspect-4/3 sm:w-40 lg:w-48">
-          <Thumbnail kind={entry.thumb} />
+        <div className="relative aspect-16/9 w-full shrink-0 self-start overflow-hidden rounded-lg border border-line bg-surface sm:w-44 lg:w-56">
+          <Preview image={entry.images?.[0]} thumb={entry.thumb} />
         </div>
 
         <div className="min-w-0 flex-1">

@@ -13,34 +13,23 @@ export default function Sidebar() {
       className={`lg:self-start ${canStick ? "lg:sticky lg:top-24" : ""}`}
     >
       <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-        {/* Gradient ring: a thin accent halo instead of a flat grey stroke. */}
+        {/* A quiet double ring — hairline border, a hair of page-coloured gap,
+            then a faint accent outline. Depth from a soft shadow, not a glow. */}
         <div className="relative">
-          <div
-            className="absolute -inset-1 rounded-full opacity-70 blur-[6px]"
-            style={{
-              background:
-                "conic-gradient(from 200deg, var(--c-accent), var(--cat-ai), var(--cat-data), var(--c-accent))",
-            }}
+          <div className="h-40 w-40 overflow-hidden rounded-full bg-surface ring-1 ring-line sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-48 xl:w-48">
+            <img
+              src={PROFILE.image}
+              alt={PROFILE.name}
+              width={224}
+              height={224}
+              className="h-full w-full object-cover"
+              style={{ transform: "scale(1.12)", transformOrigin: "50% 34%" }}
+            />
+          </div>
+          <span
+            className="pointer-events-none absolute -inset-[5px] rounded-full ring-1 ring-accent/25"
             aria-hidden="true"
           />
-          <div
-            className="relative rounded-full p-[2.5px]"
-            style={{
-              background:
-                "conic-gradient(from 200deg, var(--c-accent), var(--cat-ai), var(--cat-data), var(--c-accent))",
-            }}
-          >
-            <div className="h-40 w-40 overflow-hidden rounded-full bg-page ring-2 ring-page sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-48 xl:w-48">
-              <img
-                src={PROFILE.image}
-                alt={PROFILE.name}
-                width={224}
-                height={224}
-                className="h-full w-full object-cover"
-                style={{ transform: "scale(1.12)", transformOrigin: "50% 34%" }}
-              />
-            </div>
-          </div>
         </div>
 
         <h1 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">

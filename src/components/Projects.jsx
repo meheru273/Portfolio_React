@@ -15,7 +15,7 @@ import {
 import { PROJECTS } from "../constants";
 import Section from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
-import Thumbnail from "./Thumbnail.jsx";
+import Preview from "./Preview.jsx";
 import TechIcon from "./TechIcon.jsx";
 
 const CATEGORY_ICONS = {
@@ -94,14 +94,33 @@ function CategoryLine({ project }) {
   );
 }
 
+/**
+ * A project with several screenshots stacks them down the card's side column;
+ * one with none falls back to a single schematic. `self-start` stops the flex
+ * row stretching the boxes past their aspect ratio.
+ */
+function PreviewStack({ project }) {
+  const shots = project.images?.length ? project.images : [null];
+
+  return (
+    <div className="flex w-full shrink-0 flex-col gap-3 self-start sm:w-40 lg:w-52">
+      {shots.map((image, i) => (
+        <div
+          key={i}
+          className="relative aspect-16/9 w-full overflow-hidden rounded-lg border border-line bg-surface"
+        >
+          <Preview image={image} thumb={project.thumb} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function FeaturedProject({ project }) {
   return (
     <article className={`card cat-${project.cat} p-6 sm:p-7`}>
       <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
-        {/* `self-start` stops the flex row stretching this past its ratio. */}
-        <div className="relative aspect-16/9 w-full shrink-0 self-start overflow-hidden rounded-lg border border-line bg-surface sm:aspect-4/3 sm:w-36 lg:w-44">
-          <Thumbnail kind={project.thumb} />
-        </div>
+        <PreviewStack project={project} />
 
         <div className="min-w-0 flex-1">
           <h3 className="text-lg leading-snug font-semibold text-ink sm:text-xl">
@@ -146,7 +165,7 @@ function CompactProject({ project }) {
       className={`card cat-${project.cat} flex h-full flex-col overflow-hidden`}
     >
       <div className="relative aspect-16/9 w-full border-b border-line bg-surface">
-        <Thumbnail kind={project.thumb} />
+        <Preview image={project.images?.[0]} thumb={project.thumb} />
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">

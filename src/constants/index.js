@@ -1,5 +1,15 @@
 import profileImg from "../assets/profile.jpg";
 
+/* Real screenshots of the shipped apps, and the architecture figures from the
+   papers. Anything without one falls back to the schematic in Thumbnail.jsx. */
+import shotBanchanIntro from "../assets/banchan_intro.png";
+import shotBanchanLogin from "../assets/banchan_login.png";
+import shotRagApp from "../assets/RAG_APP.png";
+import shotBraille from "../assets/braille.png";
+import shotBankApp from "../assets/bank_app.png";
+import figParkinsons from "../assets/paper-parkinsons-1.png";
+import figCyclone from "../assets/paper-cyclone-1.png";
+
 /* ------------------------------------------------------------------ *
  * Content is sourced from the master resume file. Every claim below   *
  * is backed by a shipped repo, a live deployment or the preprint —    *
@@ -37,13 +47,19 @@ export const SOCIALS = [
   },
 ];
 
-/* Counts are derived from the lists further down this file — if you add a
-   project or a paper, bump the matching figure here too. */
-export const STATS = [
-  { icon: "projects", value: "10", label: "Projects shipped" },
-  { icon: "research", value: "2", label: "Research papers" },
-  { icon: "code", value: "180+", label: "DSA problems solved" },
-  { icon: "languages", value: "10", label: "Languages used" },
+/* The headline tools, shown as branded pills under the About copy. Kept short
+   on purpose — the full inventory lives in SKILLS. */
+export const CORE_STACK = [
+  "Python",
+  "PyTorch",
+  "TypeScript",
+  "React",
+  "Node.js",
+  "FastAPI",
+  "LangChain",
+  "MongoDB",
+  "Redis",
+  "Docker",
 ];
 
 export const NAV_LINKS = [
@@ -111,6 +127,13 @@ export const PUBLICATIONS = [
     venue: "arXiv:2604.18372",
     date: "April 2026",
     thumb: "imu",
+    images: [
+      {
+        src: figParkinsons,
+        alt: "Pipeline figure: IMU preprocessing, self-attention encoder, InfoNCE fine-tuning and Raspberry Pi inference",
+        fit: "contain",
+      },
+    ],
     highlights: [
       "Self-supervised dual-channel cross-attention encoder over bilateral wrist-IMU signals, trained and evaluated on the PADS dataset of 469 subjects.",
       "93.12% healthy-control vs. Parkinson's accuracy under full supervision; contrastive InfoNCE pre-training reaches 93.56% using only 20% of the labels.",
@@ -134,6 +157,13 @@ export const PUBLICATIONS = [
     venue: "Khulna University of Engineering & Technology",
     date: "2026",
     thumb: "cyclone",
+    images: [
+      {
+        src: figCyclone,
+        alt: "Architecture figure: multi-channel VAE, condition encoder and rectified-flow UNet over GRIDSAT-IR and ERA5 data",
+        fit: "contain",
+      },
+    ],
     highlights: [
       "Two-stage latent generative model: a multi-channel VAE compresses each 5×256×256 storm frame — GRIDSAT-B1 infrared brightness temperature plus four ERA5 fields — into a 4×64×64 latent, feeding a 66.2M-parameter conditional rectified-flow UNet with factorized temporal attention that generates the next three frames at 3-hour cadence in a single pass.",
       "16.35 dB PSNR / 0.759 SSIM on held-out 2022 storms, beating a reproduced cascaded-diffusion baseline at every lead time while sampling ~30× faster (56 ms vs. 1,673 ms).",
@@ -158,6 +188,10 @@ export const PROJECTS = [
     category: "Full-Stack · Microservices",
     cat: "web",
     thumb: "microservices",
+    images: [
+      { src: shotBanchanIntro, alt: "Banchan storefront home screen" },
+      { src: shotBanchanLogin, alt: "Banchan login screen" },
+    ],
     period: "2026",
     featured: true,
     description:
@@ -197,6 +231,7 @@ export const PROJECTS = [
     category: "AI / LLM · Full-Stack",
     cat: "ai",
     thumb: "rag",
+    images: [{ src: shotRagApp, alt: "Streaming chat assistant interface" }],
     period: "2026",
     featured: true,
     description:
@@ -227,6 +262,12 @@ export const PROJECTS = [
     category: "Computer Vision · LLM Agents",
     cat: "ai",
     thumb: "braille",
+    images: [
+      {
+        src: shotBraille,
+        alt: "Braille detection interface with bounding boxes and decoded text",
+      },
+    ],
     period: "2026",
     featured: true,
     description:
@@ -340,6 +381,9 @@ export const PROJECTS = [
     category: "Mobile · Java",
     cat: "mobile",
     thumb: "mobile",
+    images: [
+      { src: shotBankApp, alt: "Bank app sign-in screen", fit: "contain" },
+    ],
     period: "2024",
     description:
       "An Android banking client covering send-money, cash in and out, bill pay, savings and transaction history, with live updates from Firebase Realtime Database.",
