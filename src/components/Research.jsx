@@ -14,17 +14,19 @@ import SocialIcon from "./SocialIcon.jsx";
 
 function Publication({ entry }) {
   return (
-    <article className="card cat-research p-6 sm:p-7">
-      <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
-        {/* Architecture figure on top, dataset figure under it. `self-start`
-            stops the flex row stretching them past their natural size. */}
+    <article className="card clearfix cat-research p-6 sm:p-7">
+      <div>
+        {/* Architecture figure on top, dataset figure under it. Floated rather
+            than a flex column so the copy wraps beside the figures and then
+            runs the full width of the card once it clears them. Below `sm` it
+            drops out of the float and sits above the text. */}
         <PreviewStack
           images={entry.images}
           thumb={entry.thumb}
-          className="w-full shrink-0 self-start sm:w-48 lg:w-64"
+          className="mb-5 w-full sm:float-right sm:mb-4 sm:ml-7 sm:w-48 lg:w-64"
         />
 
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide uppercase cat-tint cat-text">
               <FiFileText size={11} aria-hidden="true" />
@@ -107,7 +109,8 @@ function Publication({ entry }) {
             </div>
           ) : null}
 
-          <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-5">
+          {/* Clears the float so its divider runs the full card width. */}
+          <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-5 clear-both">
             {entry.tags.map((tag) => (
               <li
                 key={tag}

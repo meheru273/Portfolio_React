@@ -96,16 +96,18 @@ function CategoryLine({ project }) {
 
 function FeaturedProject({ project }) {
   return (
-    <article className={`card cat-${project.cat} p-6 sm:p-7`}>
-      <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
-        {/* `self-start` stops the flex row stretching the images. */}
+    <article className={`card clearfix cat-${project.cat} p-6 sm:p-7`}>
+      <div>
+        {/* Floated rather than a flex column so the copy wraps beside the
+            screenshots and then runs the full width of the card once it clears
+            them. Below `sm` it drops out of the float and sits above the text. */}
         <PreviewStack
           images={project.images}
           thumb={project.thumb}
-          className="w-full shrink-0 self-start sm:w-44 lg:w-56"
+          className="mb-5 w-full sm:float-right sm:mb-4 sm:ml-7 sm:w-44 lg:w-56"
         />
 
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0">
           <h3 className="text-lg leading-snug font-semibold text-ink sm:text-xl">
             {project.title}
           </h3>

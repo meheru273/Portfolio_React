@@ -191,6 +191,14 @@
     border-color: var(--cat, var(--c-accent));
   }
 
+  /* Cards float their image column, so they need to contain it — otherwise a
+     stack taller than the copy would hang out of the bottom of the card. */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
   /* Brand marks carry both theme colours; this picks one. */
   .brand {
     color: var(--brand);
