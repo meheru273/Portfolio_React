@@ -1,5 +1,5 @@
 import React from "react";
-import { FiMapPin, FiFileText } from "react-icons/fi";
+import { FiMapPin, FiDownload } from "react-icons/fi";
 import { PROFILE, SOCIALS } from "../constants";
 import SocialIcon from "./SocialIcon.jsx";
 import useStickyFit from "../hooks/useStickyFit.js";
@@ -13,15 +13,34 @@ export default function Sidebar() {
       className={`lg:self-start ${canStick ? "lg:sticky lg:top-24" : ""}`}
     >
       <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-        <div className="h-40 w-40 overflow-hidden rounded-full ring-1 ring-line sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-48 xl:w-48">
-          <img
-            src={PROFILE.image}
-            alt={PROFILE.name}
-            width={224}
-            height={224}
-            className="h-full w-full object-cover"
-            style={{ transform: "scale(1.12)", transformOrigin: "50% 34%" }}
+        {/* Gradient ring: a thin accent halo instead of a flat grey stroke. */}
+        <div className="relative">
+          <div
+            className="absolute -inset-1 rounded-full opacity-70 blur-[6px]"
+            style={{
+              background:
+                "conic-gradient(from 200deg, var(--c-accent), var(--cat-ai), var(--cat-data), var(--c-accent))",
+            }}
+            aria-hidden="true"
           />
+          <div
+            className="relative rounded-full p-[2.5px]"
+            style={{
+              background:
+                "conic-gradient(from 200deg, var(--c-accent), var(--cat-ai), var(--cat-data), var(--c-accent))",
+            }}
+          >
+            <div className="h-40 w-40 overflow-hidden rounded-full bg-page ring-2 ring-page sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-48 xl:w-48">
+              <img
+                src={PROFILE.image}
+                alt={PROFILE.name}
+                width={224}
+                height={224}
+                className="h-full w-full object-cover"
+                style={{ transform: "scale(1.12)", transformOrigin: "50% 34%" }}
+              />
+            </div>
+          </div>
         </div>
 
         <h1 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">
@@ -30,6 +49,14 @@ export default function Sidebar() {
         <p className="mt-1.5 text-[15px] leading-snug text-muted">
           {PROFILE.role}
         </p>
+
+        <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-ok/25 bg-ok/10 px-2.5 py-1 text-[12px] font-medium text-ok">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ok" />
+          </span>
+          Open to opportunities
+        </span>
 
         <p className="mt-3.5 text-sm leading-relaxed text-faint">
           {PROFILE.affiliation},{" "}
@@ -44,7 +71,7 @@ export default function Sidebar() {
         </p>
 
         <p className="mt-2.5 flex items-center gap-1.5 text-sm text-faint">
-          <FiMapPin size={14} aria-hidden="true" />
+          <FiMapPin size={14} className="text-accent" aria-hidden="true" />
           {PROFILE.location}
         </p>
 
@@ -57,21 +84,26 @@ export default function Sidebar() {
                 rel="noreferrer noopener"
                 title={social.label}
                 aria-label={social.label}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-raised transition-all hover:-translate-y-0.5 hover:border-transparent hover:bg-surface hover:shadow-sm"
               >
-                <SocialIcon name={social.icon} className="h-[17px] w-[17px]" />
+                <SocialIcon
+                  name={social.icon}
+                  className="h-[17px] w-[17px]"
+                  brand
+                />
               </a>
             </li>
           ))}
         </ul>
 
+        {/* The one filled button on the page — the action worth taking. */}
         <a
           href={PROFILE.cv}
           target="_blank"
           rel="noreferrer noopener"
-          className="mt-5 inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-page shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
         >
-          <FiFileText size={15} aria-hidden="true" />
+          <FiDownload size={15} aria-hidden="true" />
           Curriculum Vitae
         </a>
       </div>

@@ -37,6 +37,15 @@ export const SOCIALS = [
   },
 ];
 
+/* Counts are derived from the lists further down this file — if you add a
+   project or a paper, bump the matching figure here too. */
+export const STATS = [
+  { icon: "projects", value: "10", label: "Projects shipped" },
+  { icon: "research", value: "2", label: "Research papers" },
+  { icon: "code", value: "180+", label: "DSA problems solved" },
+  { icon: "languages", value: "10", label: "Languages used" },
+];
+
 export const NAV_LINKS = [
   { id: "about", label: "About" },
   { id: "news", label: "News" },
@@ -65,21 +74,30 @@ export const RESEARCH_INTERESTS = [
   "Agentic LLM / RAG Systems",
 ];
 
+/* `kind` drives the timeline marker: degree | launch | paper. */
 export const NEWS = [
   {
     date: "Jun 2026",
+    kind: "degree",
+    tag: "Degree",
     text: `Graduated from **KUET** with a B.Sc. in Computer Science & Engineering. Undergraduate thesis — *Tropical Cyclone Forecasting via Latent Rectified Flow* — complete; manuscript in preparation.`,
   },
   {
     date: "Jun 2026",
+    kind: "launch",
+    tag: "Launch",
     text: `[Banchan](https://banchan-korean-restaurant-client.vercel.app), a six-service Korean-restaurant ordering platform with an event-driven order pipeline, went live.`,
   },
   {
     date: "Apr 2026",
+    kind: "paper",
+    tag: "Preprint",
     text: `New preprint on arXiv: [Parkinson's Disease Detection via Self-Supervised Dual-Channel Cross-Attention on Bilateral Wrist-Worn IMU Signals](https://arxiv.org/abs/2604.18372) — **93.56%** accuracy using only 20% of the labels.`,
   },
   {
     date: "Mar 2026",
+    kind: "launch",
+    tag: "Launch",
     text: `[Braillifie](https://huggingface.co/spaces/meheru/braille-detector-assistant), a braille-to-text reader paired with an LLM assistant, shipped as three independently deployable services.`,
   },
 ];
@@ -92,6 +110,7 @@ export const PUBLICATIONS = [
     authors: ["Meheru Zannat"],
     venue: "arXiv:2604.18372",
     date: "April 2026",
+    thumb: "imu",
     highlights: [
       "Self-supervised dual-channel cross-attention encoder over bilateral wrist-IMU signals, trained and evaluated on the PADS dataset of 469 subjects.",
       "93.12% healthy-control vs. Parkinson's accuracy under full supervision; contrastive InfoNCE pre-training reaches 93.56% using only 20% of the labels.",
@@ -114,6 +133,7 @@ export const PUBLICATIONS = [
     authors: ["Meheru Zannat", "Sk. Md. Masudul Ahsan"],
     venue: "Khulna University of Engineering & Technology",
     date: "2026",
+    thumb: "cyclone",
     highlights: [
       "Two-stage latent generative model: a multi-channel VAE compresses each 5×256×256 storm frame — GRIDSAT-B1 infrared brightness temperature plus four ERA5 fields — into a 4×64×64 latent, feeding a 66.2M-parameter conditional rectified-flow UNet with factorized temporal attention that generates the next three frames at 3-hour cadence in a single pass.",
       "16.35 dB PSNR / 0.759 SSIM on held-out 2022 storms, beating a reproduced cascaded-diffusion baseline at every lead time while sampling ~30× faster (56 ms vs. 1,673 ms).",
@@ -136,6 +156,8 @@ export const PROJECTS = [
   {
     title: "Banchan — Korean Restaurant Ordering Platform",
     category: "Full-Stack · Microservices",
+    cat: "web",
+    thumb: "microservices",
     period: "2026",
     featured: true,
     description:
@@ -173,6 +195,8 @@ export const PROJECTS = [
   {
     title: "AI Chatbot — RAG & Agentic LLM System",
     category: "AI / LLM · Full-Stack",
+    cat: "ai",
+    thumb: "rag",
     period: "2026",
     featured: true,
     description:
@@ -201,6 +225,8 @@ export const PROJECTS = [
   {
     title: "Braillifie — Braille-to-Text Recognition",
     category: "Computer Vision · LLM Agents",
+    cat: "ai",
+    thumb: "braille",
     period: "2026",
     featured: true,
     description:
@@ -237,6 +263,8 @@ export const PROJECTS = [
   {
     title: "SDN Network Simulation",
     category: "Networking · Systems",
+    cat: "sys",
+    thumb: "sdn",
     period: "2026",
     description:
       "A 10-node software-defined network with 13 bidirectional 100 Mbps links, simulated in OMNeT++ 6.2 with the control plane architecturally separated from the forwarding data plane.",
@@ -251,6 +279,8 @@ export const PROJECTS = [
   {
     title: "AES-128 Image Encryption on FPGA",
     category: "Hardware · Security",
+    cat: "hw",
+    thumb: "fpga",
     period: "2025",
     description:
       "Transparent memory encryption on a Digilent Basys 3 (Artix-7): a 128×128 grayscale image streams in over UART, is encrypted block-by-block into on-chip BRAM, then decrypted on demand and streamed back.",
@@ -269,6 +299,8 @@ export const PROJECTS = [
   {
     title: "Retail Order & Delivery Database",
     category: "Databases · Oracle PL/SQL",
+    cat: "data",
+    thumb: "schema",
     period: "2024",
     description:
       "A six-table normalised Oracle schema for a retail order and delivery workflow, with the referential-integrity and PL/SQL layers written by hand.",
@@ -282,6 +314,8 @@ export const PROJECTS = [
   {
     title: "Grocery Management System",
     category: "Full-Stack · PHP",
+    cat: "web",
+    thumb: "dashboard",
     period: "2024",
     description:
       "A Laravel inventory and ordering system with strict MVC separation and role-based access control across admin, staff and customer roles.",
@@ -304,6 +338,8 @@ export const PROJECTS = [
   {
     title: "Bank Management — Android",
     category: "Mobile · Java",
+    cat: "mobile",
+    thumb: "mobile",
     period: "2024",
     description:
       "An Android banking client covering send-money, cash in and out, bill pay, savings and transaction history, with live updates from Firebase Realtime Database.",
@@ -333,6 +369,8 @@ export const PROJECTS = [
   {
     title: "Portfolio Website — ASP.NET",
     category: "Web · .NET",
+    cat: "web",
+    thumb: "web",
     period: "2024",
     description:
       "An ASP.NET Web Forms (C#) site with authentication and CRUD pages over a SQL data layer. Implemented but not hosted.",
@@ -345,6 +383,8 @@ export const PROJECTS = [
   {
     title: "SwiftUI iOS Game",
     category: "Mobile · Swift",
+    cat: "mobile",
+    thumb: "game",
     period: "2024",
     description:
       "A state-driven SwiftUI runner game — scoring, game-over and reset all flow through @State.",

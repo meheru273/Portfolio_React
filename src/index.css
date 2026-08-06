@@ -19,6 +19,18 @@
   --c-accent: #1a5fb4;
   --c-accent-soft: #eef4fc;
 
+  /* Category accents. One hue per domain so a scanning eye can tell an
+     LLM project from an FPGA one before reading a word. */
+  --cat-ai: #7c3aed;
+  --cat-web: #1a5fb4;
+  --cat-data: #0f766e;
+  --cat-sys: #0369a1;
+  --cat-hw: #b45309;
+  --cat-mobile: #047857;
+  --cat-research: #be123c;
+
+  --c-ok: #15803d;
+
   color-scheme: light;
 }
 
@@ -32,6 +44,17 @@
   --c-line: #262b34;
   --c-accent: #6fa8ff;
   --c-accent-soft: #17222f;
+
+  /* Lifted for contrast against the dark surface. */
+  --cat-ai: #b39cf7;
+  --cat-web: #6fa8ff;
+  --cat-data: #4fd1c5;
+  --cat-sys: #6ec5f5;
+  --cat-hw: #f0b45c;
+  --cat-mobile: #52d6a4;
+  --cat-research: #fb7185;
+
+  --c-ok: #4ade80;
 
   color-scheme: dark;
 }
@@ -47,6 +70,7 @@
   --color-line: var(--c-line);
   --color-accent: var(--c-accent);
   --color-accent-soft: var(--c-accent-soft);
+  --color-ok: var(--c-ok);
 }
 
 @layer base {
@@ -103,6 +127,88 @@
   }
   .prose-link:hover {
     text-decoration-color: var(--c-accent);
+  }
+
+  /* ---- Category theming ------------------------------------------------ *
+   * A `cat-*` class sets --cat on a card; every descendant tints off it,
+   * so one class recolours the rule, the badge, the bullets and the SVG.   */
+  .cat-ai      { --cat: var(--cat-ai); }
+  .cat-web     { --cat: var(--cat-web); }
+  .cat-data    { --cat: var(--cat-data); }
+  .cat-sys     { --cat: var(--cat-sys); }
+  .cat-hw      { --cat: var(--cat-hw); }
+  .cat-mobile  { --cat: var(--cat-mobile); }
+  .cat-research{ --cat: var(--cat-research); }
+
+  .cat-text { color: var(--cat, var(--c-accent)); }
+  .cat-tint {
+    background-color: color-mix(in srgb, var(--cat, var(--c-accent)) 10%, transparent);
+  }
+  .cat-ring {
+    border-color: color-mix(in srgb, var(--cat, var(--c-accent)) 30%, transparent);
+  }
+
+  /* Cards lift a little on hover — enough to feel alive, not enough to bounce. */
+  .card {
+    border: 1px solid var(--c-line);
+    background-color: var(--c-raised);
+    border-radius: 0.75rem;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+  .card:hover {
+    border-color: color-mix(in srgb, var(--cat, var(--c-accent)) 40%, var(--c-line));
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px
+      color-mix(in srgb, var(--cat, var(--c-accent)) 45%, transparent);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover {
+      transform: none;
+    }
+  }
+
+  /* The pill link row under each entry — PDF · Code · Demo. */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 0.375rem;
+    border: 1px solid color-mix(in srgb, var(--cat, var(--c-accent)) 32%, transparent);
+    color: var(--cat, var(--c-accent));
+    padding: 0.3rem 0.7rem;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease;
+  }
+  .pill:hover {
+    background-color: color-mix(in srgb, var(--cat, var(--c-accent)) 10%, transparent);
+    border-color: var(--cat, var(--c-accent));
+  }
+
+  /* Brand marks carry both theme colours; this picks one. */
+  .brand {
+    color: var(--brand);
+  }
+  .dark .brand {
+    color: var(--brand-dark, var(--brand));
+  }
+
+  /* Section rules fade out rather than stopping dead. */
+  .rule-fade {
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      var(--c-accent),
+      color-mix(in srgb, var(--c-accent) 25%, transparent) 18%,
+      var(--c-line) 45%,
+      transparent
+    );
   }
 }
 
