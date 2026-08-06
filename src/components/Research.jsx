@@ -15,10 +15,15 @@ import SocialIcon from "./SocialIcon.jsx";
 function Publication({ entry }) {
   return (
     <article className="card cat-research p-6 sm:p-7">
-      {/* Paper figures are wide — 2:1 and 3:1 — so a narrow side column would
-          render them as unreadable strips with dead space underneath. They get
-          the full card width below the text instead. */}
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 sm:flex-row-reverse sm:gap-7">
+        {/* Architecture figure on top, dataset figure under it. `self-start`
+            stops the flex row stretching them past their natural size. */}
+        <PreviewStack
+          images={entry.images}
+          thumb={entry.thumb}
+          className="w-full shrink-0 self-start sm:w-48 lg:w-64"
+        />
+
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide uppercase cat-tint cat-text">
@@ -101,13 +106,6 @@ function Publication({ entry }) {
               ))}
             </div>
           ) : null}
-
-          <PreviewStack
-            images={entry.images}
-            thumb={entry.thumb}
-            columns
-            className="mt-6 border-t border-line pt-6"
-          />
 
           <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-line pt-5">
             {entry.tags.map((tag) => (
