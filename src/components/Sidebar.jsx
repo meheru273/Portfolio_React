@@ -2,12 +2,18 @@ import React from "react";
 import { FiMapPin, FiFileText } from "react-icons/fi";
 import { PROFILE, SOCIALS } from "../constants";
 import SocialIcon from "./SocialIcon.jsx";
+import useStickyFit from "../hooks/useStickyFit.js";
 
 export default function Sidebar() {
+  const [ref, canStick] = useStickyFit();
+
   return (
-    <aside className="lg:sticky lg:top-24 lg:self-start">
+    <aside
+      ref={ref}
+      className={`lg:self-start ${canStick ? "lg:sticky lg:top-24" : ""}`}
+    >
       <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-        <div className="h-44 w-44 overflow-hidden rounded-full ring-1 ring-line sm:h-52 sm:w-52 lg:h-56 lg:w-56">
+        <div className="h-40 w-40 overflow-hidden rounded-full ring-1 ring-line sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-48 xl:w-48">
           <img
             src={PROFILE.image}
             alt={PROFILE.name}
@@ -18,14 +24,14 @@ export default function Sidebar() {
           />
         </div>
 
-        <h1 className="mt-6 font-display text-2xl font-semibold tracking-tight text-ink">
+        <h1 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">
           {PROFILE.name}
         </h1>
         <p className="mt-1.5 text-[15px] leading-snug text-muted">
           {PROFILE.role}
         </p>
 
-        <p className="mt-4 text-sm leading-relaxed text-faint">
+        <p className="mt-3.5 text-sm leading-relaxed text-faint">
           {PROFILE.affiliation},{" "}
           <a
             href={PROFILE.affiliationUrl}
@@ -37,12 +43,12 @@ export default function Sidebar() {
           </a>
         </p>
 
-        <p className="mt-3 flex items-center gap-1.5 text-sm text-faint">
+        <p className="mt-2.5 flex items-center gap-1.5 text-sm text-faint">
           <FiMapPin size={14} aria-hidden="true" />
           {PROFILE.location}
         </p>
 
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+        <ul className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
           {SOCIALS.map((social) => (
             <li key={social.label}>
               <a
@@ -63,7 +69,7 @@ export default function Sidebar() {
           href={PROFILE.cv}
           target="_blank"
           rel="noreferrer noopener"
-          className="mt-6 inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+          className="mt-5 inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
         >
           <FiFileText size={15} aria-hidden="true" />
           Curriculum Vitae
