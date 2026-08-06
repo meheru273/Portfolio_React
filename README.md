@@ -1,12 +1,38 @@
-# React + Vite
+# Portfolio — Meheru Zannat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal academic-style portfolio: about, news, research, projects, skills, education and contact.
 
-Currently, two official plugins are available:
+Built with React 19, Vite and Tailwind CSS v4, with framer-motion for scroll reveals and a class-based light/dark theme.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Develop
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # → dist/
+npm run preview
+npm run lint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Editing content
+
+All copy lives in [`src/constants/index.js`](src/constants/index.js) — profile, social links, nav,
+about paragraphs, news, publications, projects, skills, education and contact. Components read from
+it and render; there is no content in the JSX.
+
+Body copy (about paragraphs, news items, education notes) supports a little inline markup:
+`[label](url)`, `**bold**` and `*italic*`, rendered by
+[`src/components/RichText.jsx`](src/components/RichText.jsx).
+
+## Assets
+
+- `src/assets/profile.jpg` — the circular headshot in the sidebar.
+- `public/Meheru_Zannat_CV.pdf` — served at `/Meheru_Zannat_CV.pdf`; replace this file to update
+  the CV behind the nav link and the sidebar button.
+
+## Theme
+
+Colours are CSS custom properties in [`src/index.css`](src/index.css) (`:root` for light, `.dark`
+for dark) exposed to Tailwind through `@theme inline`, so utilities like `bg-page`, `text-muted`
+and `border-line` follow the active theme. An inline script in `index.html` applies the saved theme
+before first paint to avoid a flash.

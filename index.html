@@ -2,7 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meheru Zannat</title>
+    <meta
+      name="description"
+      content="Meheru Zannat — AI/ML engineer and full-stack developer. Computer Science &amp; Engineering graduate of KUET working on self-supervised learning, generative models and production LLM systems."
+    />
+    <meta name="author" content="Meheru Zannat" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Meheru Zannat" />
+    <meta
+      property="og:description"
+      content="AI/ML engineer and full-stack developer. Self-supervised learning, generative models and production LLM systems."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Nunito+Sans:opsz,wght@6..12,200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Applied before first paint so the theme never flashes.
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark =
+            saved === "dark" ||
+            (!saved &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

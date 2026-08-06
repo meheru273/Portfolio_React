@@ -1,55 +1,45 @@
-// Fixed Education.jsx
-import React from 'react';
-import { EXPERIENCES } from '../constants';
-import { motion } from 'framer-motion';
+import React from "react";
+import { EDUCATION } from "../constants";
+import Section from "./Section.jsx";
+import Reveal from "./Reveal.jsx";
+import RichText from "./RichText.jsx";
 
 export default function Education() {
   return (
-    <div className="border-b border-neutral-900 pb-16 lg:pb-24">
-      <motion.h1
-        whileInView={{opacity:1, y:0}}
-        initial={{opacity:0, y:-100}}
-        transition={{duration:1.5}}
-        className="my-16 lg:my-20 text-center text-4xl lg:text-5xl"
-      >
-        Education
-      </motion.h1>
-
-      <div className="max-w-5xl mx-auto">
-        {EXPERIENCES.map((exp, index) => (
-          <div key={index} className="mb-12 flex flex-wrap lg:flex-nowrap gap-6 lg:gap-12">
-            {/* Year */}
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/4"
-            >
-              <p className="text-base sm:text-lg text-neutral-400 font-medium">
-                {exp.year}
-              </p>
-            </motion.div>
-
-            {/* Details */}
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full lg:w-3/4"
-            >
-              <h6 className="mb-3 text-lg sm:text-xl font-semibold">
-                {exp.role} -{' '}
-                <span className="text-base sm:text-lg text-purple-100">
-                  {exp.company}
+    <Section id="education" title="Education">
+      <div className="space-y-6">
+        {EDUCATION.map((entry, i) => (
+          <Reveal key={entry.institution} delay={i * 0.06}>
+            <article className="rounded-lg border border-line bg-raised p-6 sm:p-7">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="text-lg font-semibold text-ink">
+                  {entry.institution}
+                </h3>
+                <span className="text-sm text-faint sm:ml-auto">
+                  {entry.location}
                 </span>
-              </h6>
-              <p className="text-base sm:text-lg text-neutral-400 leading-relaxed">
-                {exp.description}
-              </p>
-            </motion.div>
-          </div>
+              </div>
+
+              <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="text-[15px] text-muted">{entry.degree}</p>
+                <span className="text-sm text-faint tabular-nums sm:ml-auto">
+                  {entry.period}
+                </span>
+              </div>
+
+              {entry.notes?.length ? (
+                <ul className="mt-4 space-y-2 border-t border-line pt-4">
+                  {entry.notes.map((note, n) => (
+                    <li key={n} className="text-[15px] leading-relaxed text-muted">
+                      <RichText text={note} />
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          </Reveal>
         ))}
       </div>
-    </div>
+    </Section>
   );
 }

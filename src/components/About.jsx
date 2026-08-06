@@ -1,51 +1,39 @@
-// src/components/About.jsx
 import React from "react";
-import aboutImg from "../assets/about.jpg";
-import { ABOUT_TEXT } from "../constants";
-import { motion } from "framer-motion";
+import { ABOUT_PARAGRAPHS, RESEARCH_INTERESTS } from "../constants";
+import Section from "./Section.jsx";
+import Reveal from "./Reveal.jsx";
+import RichText from "./RichText.jsx";
 
 export default function About() {
   return (
-    <div className="border-b border-neutral-900 pb-4">
-      <motion.h1 
-      whileInView={{opacity:1,y:0}}
-      initial={{opacity:0,y:-100}}
-      transition={{duration:1.5}}
-      className="my-20 text-center text-4xl">
-        About Me
-        <span className="text-neutral-500"></span>
-      </motion.h1>
-      <div className="flex flex-wrap items-start justify-between">
-        {/* IMAGE COLUMN - LEFT SIDE */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full sm:w-5/12 flex-shrink-0"
-        >
-          <div className="flex items-center justify-center">
-            <img
-              src={aboutImg}
-              alt="about"
-              className="w-3/4 sm:w-full max-w-xs h-auto shadow-md rounded-lg"
-            />
-          </div>
-        </motion.div>
-
-        {/* TEXT COLUMN - RIGHT SIDE */}
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full sm:w-5/12 flex-shrink-0 mt-4 sm:mt-0"
-        >
-          <div className="flex justify-center">
-            <p className="text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              {ABOUT_TEXT}
+    <Section id="about" title="About Me">
+      <div className="space-y-5">
+        {ABOUT_PARAGRAPHS.map((paragraph, i) => (
+          <Reveal key={i} delay={i * 0.06}>
+            <p className="text-[17px] leading-[1.75] text-muted">
+              <RichText text={paragraph} />
             </p>
-          </div>
-        </motion.div>
+          </Reveal>
+        ))}
       </div>
-    </div>
+
+      <Reveal delay={0.1}>
+        <div className="mt-9">
+          <h3 className="text-xs font-semibold tracking-[0.14em] text-faint uppercase">
+            Research Interests
+          </h3>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {RESEARCH_INTERESTS.map((interest) => (
+              <li
+                key={interest}
+                className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-[13px] text-muted"
+              >
+                {interest}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+    </Section>
   );
-};
+}
